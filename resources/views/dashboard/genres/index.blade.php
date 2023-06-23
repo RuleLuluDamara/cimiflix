@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Movie Categories</h1>
+        <h1 class="h2">Movie List</h1>
 </div>
 
 @if (session()->has('success'))
@@ -11,7 +11,7 @@
 </div>
 @endif
       <div class="table-responsive">
-        <a href="/dashboard/genres/create" class="btn btn-primary">Add Categories</a>
+        <a href="/dashboard/genres/create" class="btn btn-primary">New Movie</a>
         <table class="table table-striped table-sm">
           <thead>
             <tr>
@@ -21,15 +21,14 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($movies as $movie )
+            @foreach ($genres as $genre )
             <tr>
               <td>{{ $loop->iteration }}</td>
-              <td>{{ $movie->name }}</td>
+              <td>{{ $genre->name }}</td>
               <td>
-                <a href="/dashboard/genres/{{ $movie->slug }}" class="badge btn-info">view</a>
-                <a href="/dashboard/genres/{{ $movie->slug }}/edit" class="badge btn-warning">edit</a>
+                <a href="/dashboard/genres/{{ $genre->slug }}/edit" class="badge btn-warning">edit</a>
 
-                <form action="/dashboard/genres/{{ $movie->slug }}" method="post" class="d-inline">
+                <form action="/dashboard/genres/{{ $genre->slug }}" method="post" class="d-inline">
                   @method('delete')
                   @csrf
                   <button class="badge btn-danger border-0" onclick="return confirm('Are you sure?')">
@@ -42,5 +41,6 @@
           </tbody>
         </table>
       </div>
+
 
 @endsection

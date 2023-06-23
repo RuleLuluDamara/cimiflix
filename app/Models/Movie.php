@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Models\Genre;
-use App\Http\Controllers\CastMovie;
+use App\Http\Controllers\Cast_movie;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 
 
 class Movie extends Model
@@ -30,18 +31,22 @@ class Movie extends Model
     //         });
     //     });
     // }
+    public function getRilisAttribute($value)
+    {
+        return Carbon::parse($value);
+    }
 
     public function genre()
     {
         return $this->belongsTo(Genre::class);
     }
-    public function moviestatuses()
-    {
-        return $this->belongsTo(MovieStatus::class);
-    }
     public function ratingumur()
     {
         return $this->belongsTo(RatingUmur::class);
+    }
+    public function moviestatuses()
+    {
+        return $this->belongsTo(MovieStatus::class);
     }
     public function userrating()
     {
@@ -59,9 +64,9 @@ class Movie extends Model
     {
         return $this->hasMany(comment::class);
     }
-    public function castmovie()
+    public function cast_movie()
     {
-        return $this->hasMany(CastMovie::class);
+        return $this->hasMany(Cast_movie::class);
     }
 
 

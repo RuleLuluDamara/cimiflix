@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class RatingUmur extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
 }

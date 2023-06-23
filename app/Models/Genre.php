@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+
 
 class Genre extends Model
 {
@@ -13,5 +15,10 @@ class Genre extends Model
     public function movies()
     {
         return $this->hasMany(Movie::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

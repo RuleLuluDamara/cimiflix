@@ -9,6 +9,7 @@ class comment extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    public $timestapmps = false;
 
     public function movie()
     {

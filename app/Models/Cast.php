@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\CastMovie;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Cast_movie;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cast extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function castmovie()
+    public function cast_movie()
     {
-        return $this->hasMany(CastMovie::class);
+        return $this->hasMany(Cast_movie::class);
     }
 
 }

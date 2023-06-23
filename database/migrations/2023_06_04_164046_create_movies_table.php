@@ -14,20 +14,19 @@ return new class extends Migration {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('genre_id');
-            $table->foreignId('user_id');
             $table->foreignId('rating_umur_id');
             $table->foreignId('status_id');
-            $table->string('slug');
             $table->string('name')->nullable(false);
+            $table->string('slug');
             $table->date('rilis');
             $table->string('resolusi');
             $table->string('durasi');
             $table->string('director');
             $table->string('studio_production');
             $table->string('image')->nullable();
+            $table->text('body');
             $table->text('excerpt');
             $table->timestamp('published_at')->nullable();
-            $table->text('body');
             $table->timestamps();
         });
     }

@@ -28,7 +28,6 @@ class MovieFactory extends Factory
             'body' => collect(fake()->paragraphs(mt_rand(5, 10)))
                 ->map(fn($p) => "<p>$p</p>")
                 ->implode(''),
-            'user_id' => mt_rand(1, 3),
             'genre_id' => mt_rand(1, 9),
             'rating_umur_id' => mt_rand(1, 3),
             'status_id' => mt_rand(1, 2)

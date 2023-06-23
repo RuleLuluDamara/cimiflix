@@ -8,21 +8,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="/dashboard/user">
               <span data-feather="file"></span>
-              Account
+              Profile
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="/dashboard/bookmarks">
               <span data-feather="file"></span>
-              Subscription
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">
-              <span data-feather="file"></span>
-              Payment
+              Bookmark
             </a>
           </li>
         </ul>
@@ -34,15 +28,27 @@
           </h6>
         <ul class="nav flex-column">
           <li class="nav-item">
+            <a class="nav-link" href="/dashboard/users">
+              <span data-feather="grid"></span>
+              Accounts
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/dashboard/genres">
               <span data-feather="grid"></span>
-              Movie Categories
+              Movie Genres
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/dashboard/movies">
               <span data-feather="file"></span>
               Movie List
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard/casts">
+              <span data-feather="file"></span>
+              Movie Cast
             </a>
           </li>
         </ul>

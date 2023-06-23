@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CastMovie extends Controller
+class Cast_movie extends Controller
 {
     //
 }

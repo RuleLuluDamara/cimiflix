@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
-            $table->datetime('waktu_bookmark');
+            $table->boolean('bookmark_status');
             $table->foreignId('movie_id');
             $table->foreignId('user_id');
             $table->timestamps();

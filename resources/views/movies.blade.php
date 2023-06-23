@@ -2,11 +2,60 @@
 @extends('layouts\main')
 
 @section('container')
-    <h1 class="mb-4 text-center">{{ $title }}</h1>
+    <section class="top-rated">
+        <div class="container">
 
+          <p class="section-subtitle">Online Streaming</p>
 
+          <h2 class="h2 section-title">Movies</h2>
+
+          <ul class="movies-list">
+            @foreach ($movies as $movie)
+
+            <li>
+              <div class="movie-card">
+
+                <a href="/movies/{{ $movie->id}}">
+                    <figure class="card-banner">
+                    {{-- <img src="{{ asset('images/movie-1.png') }}" alt="Sonic the Hedgehog 2 movie poster"> --}}
+                    @if ($movie->image)
+                    <img class= "img-fluid" src="{{  asset('storage/' . $movie->image) }}" alt="" >
+                    @else
+                    <img src="https://source.unsplash.com/1200x490/?{{ $movie->genre->name }}" class="card-img-top" alt="{{ $movie->genre->name }}">
+                    @endif
+                    </figure>
+                </a>
+
+                <div class="title-wrapper">
+                  <a href="/movies/{{ $movie->id}}">
+                    <h3 class="card-title">{{ $movie->name }}</h3>
+                  </a>
+                  <time datetime="{{ $movie->rilis }}">{{ $movie->rilis->format('Y') }}</time>
+                </div>
+
+                <div class="card-meta">
+                  <div class="badge badge-outline">{{ $movie->resolusi }}</div>
+
+                  <div class="duration">
+                    <ion-icon name="time-outline"></ion-icon>
+
+                    <time datetime="{{ $movie->durasi }}">{{ $movie->durasi }}</time>
+                  </div>
+
+                  <div class="rating">
+                    <ion-icon name="star"></ion-icon>
+
+                    <data>7.8</data>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+            @endforeach
+      </section>
+{{-- <section class=top-rated>
     <div class="container">
-        <div class="row">
+            {{-- <div class="row">
             @foreach ($movies as $movie)
             
             <div class="col-md-4">
@@ -33,11 +82,11 @@
             </div>
             @endforeach
         </div>
-    </div>
+    </div> --}}
+{{-- </section> --}}
+
     {{-- @else
         <p>No post found</p>
     @endif --}}
-
-
 @endsection
     

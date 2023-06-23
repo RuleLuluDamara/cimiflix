@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
-use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class AdminGenreController extends Controller
 {
@@ -15,7 +16,6 @@ class AdminGenreController extends Controller
     {
         return view('dashboard.genres.index', [
             'genres' => Genre::all(),
-            'movies' => Movie::all()
         ]);
     }
 
@@ -24,7 +24,9 @@ class AdminGenreController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.genres.create', [
+            'genres' => Genre::all(),
+        ]);
     }
 
     /**
@@ -32,7 +34,14 @@ class AdminGenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+        $validatedData['slug'] = Str::slug($request->name);
+
+        Genre::create($validatedData);
+
+        return redirect('/dashboard/genres')->with('success', 'New Genres had been added');
     }
 
     /**
@@ -40,7 +49,9 @@ class AdminGenreController extends Controller
      */
     public function show(Genre $genre)
     {
-        //
+        return view('dashboard.genres.show', [
+            'genre' => $genre
+        ]);
     }
 
     /**
@@ -48,15 +59,31 @@ class AdminGenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        //
+        $genre = Genre::where('slug', $genre->slug)->first();
+
+        if (!$genre) {
+            abort(404); // Handle the case where the genre is not found
+        }
+        return view('dashboard.genres.edit', [
+            'genre' => $genre,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, genre $genre)
+    public function update(Request $request, Genre $genre)
     {
-        //
+        $rules = [
+            'name' => 'required|max:255',
+        ];
+
+        $validatedData = $request->validate($rules);
+        $validatedData['slug'] = Str::slug($validatedData['name']);
+        Genre::where('id', $genre->id)
+            ->update($validatedData);
+
+        return redirect('/dashboard/genres')->with('success', 'Genre has been updated');
     }
 
     /**
@@ -64,6 +91,8 @@ class AdminGenreController extends Controller
      */
     public function destroy(Genre $genre)
     {
-        //
+        $genre->delete();
+
+        return redirect('/dashboard/genres')->with('success', 'Genre had been deleted');
     }
 }

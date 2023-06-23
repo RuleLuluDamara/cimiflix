@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookmark;
 use App\Models\Movie;
 use App\Models\Genre;
+use App\Models\Comment;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,7 +19,9 @@ class DashboardMovieController extends Controller
     public function index()
     {
         return view('dashboard.movies.index', [
-            'movies' => Movie::where('user_id', auth()->user()->id)->get()
+            //'bookmarks' => Bookmark::where('user_id', auth()->user()->id)->get(),
+            'bookmarks' => Bookmark::all(),
+            'movies' => Movie::all()
         ]);
     }
 
@@ -26,9 +30,11 @@ class DashboardMovieController extends Controller
      */
     public function create()
     {
-        return view('dashboard.movies.create', [
-            'genres' => Genre::all()
-        ]);
+        // return view('dashboard.movies.create', [
+        //     'genres' => Genre::all(),
+        //     'rating_umurs' => RatingUmur::all(),
+        //     'statuses' => MovieStatuses::all()
+        // ]);
     }
 
     /**
@@ -37,29 +43,31 @@ class DashboardMovieController extends Controller
     public function store(Request $request)
     {
         //return ($request);
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'slug' => 'required|unique:movies',
-            // 'rilis' => 'required',
-            // 'resolusi' => 'required',
-            // 'durasi' => 'required',
-            // 'director' => 'required',
-            // 'studio_production' => 'required',
-            'genre_id' => 'required',
-            'image' => 'image|file|max:1024',
-            'body' => 'required',
-        ]);
+        // $validatedData = $request->validate([
+        //     'name' => 'required|max:255',
+        //     'slug' => 'required|unique:movies',
+        //     'rilis' => 'nullable',
+        //     'resolusi' => 'nullable',
+        //     'durasi' => 'nullable',
+        //     'director' => 'nullable',
+        //     'studio_production' => 'nullable',
+        //     'genre_id' => 'required',
+        //     'rating_umur_id' => 'required',
+        //     'status_id' => 'required',
+        //     'image' => 'image|file|max:1024',
+        //     'body' => 'required',
+        // ]);
 
-        if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('movie-images');
-        }
+        // if ($request->file('image')) {
+        //     $validatedData['image'] = $request->file('image')->store('movie-images');
+        // }
+        // $validatedData['user_id'] = auth()->user()->id;
 
-        $validatedData['user_id'] = auth()->user()->id;
         // $validatedData['excerpt'] = Str::limit($request->body, 100);
 
-        Movie::create($validatedData);
+        // Movie::create($validatedData);
 
-        return redirect('/dashboard/movies')->with('success', 'New movie had been added');
+        // return redirect('/dashboard/movies')->with('success', 'New movie had been added');
     }
 
 
@@ -69,7 +77,8 @@ class DashboardMovieController extends Controller
     public function show(Movie $movie)
     {
         return view('dashboard.movies.show', [
-            'movie' => $movie
+            'movie' => $movie,
+            'comments' => Comment::all()
         ]);
     }
 
