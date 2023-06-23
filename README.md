@@ -64,3 +64,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Special Thanks
+
+I would like to express my heartfelt gratitude to CodeWithSadee for the incredible templates provided on their YouTube channel (https://www.youtube.com/@codewithsadee). These templates have been instrumental in my Final Project database manajement, allowing me to [describe how they have helped - e.g., enhance my designs, streamline my coding process, etc.]. The generosity and expertise demonstrated by CodeWithSadee in sharing these valuable resources are truly commendable. I am immensely thankful for their dedication to supporting and empowering fellow hobbyists in their creative endeavors.
